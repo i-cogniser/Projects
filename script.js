@@ -200,4 +200,45 @@ window.addEventListener('DOMContentLoaded', function () {
         }
     })
 
+    // calc
+
+    let persons = document.querySelectorAll('.counter-block-input')[0]
+    let restDays = document.querySelectorAll('.counter-block-input')[1]
+    let place = document.getElementById('select')
+    let tatalValue = document.getElementById('total')
+    let personsSum = 0
+    let daysSum = 0
+    let total = 0
+
+    tatalValue.innerHTML = 0
+    persons.addEventListener('change', function () {
+        personsSum = +this.value
+        total = (daysSum + personsSum) * 4000
+
+        if (restDays.value == '') {
+            tatalValue.innerHTML = 0
+        } else {
+            tatalValue.innerHTML = total
+        }
+
+    })
+    restDays.addEventListener('change', function () {
+        daysSum = +this.value
+        total = (daysSum + personsSum) * 4000
+
+        if (persons.value == '') {
+            tatalValue.innerHTML = 0
+        } else {
+            tatalValue.innerHTML = total
+        }
+    })
+
+    place.addEventListener('change', function () {
+        if (persons.value == '' || restDays.value == '') {
+            tatalValue.innerHTML = 0
+        } else {
+            //  let a = total
+            tatalValue.innerHTML = total * this.options[this.selectedIndex].value
+        }
+    })
 })
